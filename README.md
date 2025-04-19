@@ -77,4 +77,4 @@ You can deploy with any ASGI server (e.g., Uvicorn, Gunicorn) and a managed Post
 ---
 
 ## License
-MIT
+See the [LICENSE](LICENSE) file for details.
