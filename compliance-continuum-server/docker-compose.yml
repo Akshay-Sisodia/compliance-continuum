@@ -1,0 +1,28 @@
+version: '3.9'
+services:
+  compliance-server:
+    build: .
+    container_name: compliance-server
+    env_file:
+      - .env
+    ports:
+      - "8000:8000"
+    depends_on:
+      - db
+    restart: unless-stopped
+
+  db:
+    image: postgres:15-alpine
+    container_name: compliance-db
+    environment:
+      POSTGRES_DB: compliance
+      POSTGRES_USER: compliance_user
+      POSTGRES_PASSWORD: compliance_pass
+    ports:
+      - "5432:5432"
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+    restart: unless-stopped
+
+volumes:
+  pgdata:
