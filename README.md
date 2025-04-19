@@ -73,8 +73,3 @@ See `.env.example` for all required variables:
 
 ## Deployment
 You can deploy with any ASGI server (e.g., Uvicorn, Gunicorn) and a managed Postgres/Supabase backend.
-
----
-
-## License
-See the [LICENSE](LICENSE) file for details.
