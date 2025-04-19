@@ -1,6 +1,10 @@
 # Compliance Continuum Server
 
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
+
 A secure, production-grade compliance system for code review and regulatory enforcement. Features robust authentication, role-based access control, dynamic regulatory rule enforcement, detailed audit logging, and comprehensive testing.
+
+**GitHub Repository:** [https://github.com/Akshay-Sisodia/compliance-continuum](https://github.com/Akshay-Sisodia/compliance-continuum)
 
 ## Features
 - **JWT Authentication**: Secure login with stateless JWT tokens.
@@ -16,8 +20,8 @@ A secure, production-grade compliance system for code review and regulatory enfo
 
 ### 1. Clone & Install
 ```bash
-git clone <your-repo-url>
-cd compliance-continuum-server
+git clone https://github.com/Akshay-Sisodia/compliance-continuum.git
+cd compliance-continuum/compliance-continuum-server
 python -m venv .venv
 .venv\Scripts\activate  # On Windows
 pip install -r requirements.txt
@@ -46,6 +50,14 @@ pytest --disable-warnings -v
 - **POST /audit/logs**: Query audit logs
 
 See the FastAPI docs at `/docs` when the server is running for details and schemas.
+
+## Repository Structure
+- `compliance-continuum-server/` — Main server code and documentation
+- `compliance_dashboard.py` — Dashboard utility script
+- `PRD.md`, `COMPLIANCE.md`, `GDPR_COMPLIANCE.md`, etc. — Documentation
+
+## License
+This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
 
 ## Environment Variables
 See `.env.example` for all required variables:
