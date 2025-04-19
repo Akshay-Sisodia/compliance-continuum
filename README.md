@@ -51,6 +51,59 @@ pytest --disable-warnings -v
 
 See the FastAPI docs at `/docs` when the server is running for details and schemas.
 
+---
+
+## Model Context Protocol (MCP) Usage
+
+This server implements the [Model Context Protocol (MCP)](https://modelcontextprotocol.io) for code compliance checking, tool calls, and resource management via JSON-RPC 2.0 endpoints.
+
+### MCP Endpoints
+- **/completion/complete**: Run compliance checks (POST, JSON-RPC 2.0)
+- **/completion/complete/stream**: Stream compliance results (POST, JSON-RPC 2.0, SSE)
+- **/tools/list**: List available tools (POST, JSON-RPC 2.0)
+- **/tools/call**: Call a tool (POST, JSON-RPC 2.0)
+- **/resources/list**: List files/resources (POST, JSON-RPC 2.0)
+- **/resources/read**: Read a file/resource (POST, JSON-RPC 2.0)
+- **/prompts/list**: List available prompts (POST, JSON-RPC 2.0)
+- **/roots/list**: List available roots/workspaces (POST, JSON-RPC 2.0)
+- **/logging/setLevel**: Set server log level (POST, JSON-RPC 2.0)
+- **/logging/logMessage**: Log a message (POST, JSON-RPC 2.0)
+
+### Authentication
+MCP endpoints require JWT authentication. Obtain a token via `/auth/token` and include it as a Bearer token in the `Authorization` header.
+
+### Example: Compliance Completion Request
+```json
+{
+  "jsonrpc": "2.0",
+  "id": 1,
+  "method": "completion/complete",
+  "params": {
+    "ref": { "type": "ref/prompt", "name": "code_review" },
+    "argument": { "name": "language", "value": "def foo(): pass" }
+  }
+}
+```
+
+### Example: Tool Call (Compliance Check)
+```json
+{
+  "jsonrpc": "2.0",
+  "id": 2,
+  "method": "tools/call",
+  "params": {
+    "tool": "run_compliance_check",
+    "arguments": { "code": "def foo(): pass" }
+  }
+}
+```
+
+### More MCP Docs
+- Visit `/mcp-docs` on the running server for a full protocol summary and usage examples.
+- See the [Model Context Protocol Reference](https://modelcontextprotocol.io) for integration details.
+
+---
+
 ## Repository Structure
 - `compliance-continuum-server/` — Main server code and documentation
 - `compliance_dashboard.py` — Dashboard utility script
